@@ -1,10 +1,10 @@
 import telebot
 from telebot import types
 
-API_TOKEN = '8718835672:AAE9L-dIaCzeWPNCQFkyaxadNE5-P1AQr0w`
+API_TOKEN = '8718835672:AAE9L-dIaCzeWPNCQFkyaxadNE5-P1AQr0w'
 bot = telebot.TeleBot(API_TOKEN)
 
-WEBAPP_URL = "https://tiiny.site" 
+WEBAPP_URL = "[https://tiiny.site](https://tiiny.site)"
 
 @bot.message_handler(commands=['start'])
 def welcome(message):
