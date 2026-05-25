@@ -1,7 +1,7 @@
 import telebot
 from telebot import types
 
-API_TOKEN = '8718835672:AAFS2R2uZUrrY4v4ug8ZZjfblhh_5GGLbpU'
+8718835672:AAFTPNHLrUgmbBlnTtx3DOCI3HQkdCm4OLg
 bot = telebot.TeleBot(API_TOKEN)
 
 WEBAPP_URL = "https://tiiny.site" 
