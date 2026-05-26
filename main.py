@@ -1,13 +1,15 @@
 import telebot
 from telebot import types
 
+# የአዲሱ ቦት ቶክን እና የዌብ አፕሊኬሽን ሊንክ ውህደት
 API_TOKEN = '8850948511:AAH8UiHe073d38byzo9cfdkpZA0F9_2OdJY'
 bot = telebot.TeleBot(API_TOKEN)
 
-
+# የድሮ ግንኙነቶችን በሙሉ በማጽዳት ሰርቨሩ ያለምንም ስህተት እንዲነሳ ያደርጋል
 bot.delete_webhook()
 
 WEBAPP_URL = "https://tiiny.site"
+
 
 def set_bot_commands():
     commands = [
@@ -52,10 +54,20 @@ def get_bingo_markup():
 @bot.message_handler(commands=['start', 'play', 'register', 'deposit', 'balance', 'withdraw', 'transfer', 'invite', 'instruction', 'support'])
 def handle_commands(message):
     chat_id = message.chat.id
+    user_name = message.from_user.first_name
+    
+    # የእንኳን ደህና መጣህ ማስተካከያ ጽሑፍ
     welcome_text = (
-        "👋 **Welcome to Harar Bingo! Choose an Option below.**\n\n"
-        "🇪🇹 እንኳን ወደ ሀረር ቢንጎ በደህና መጡ! ከታች ካሉት አማራጮች አንዱን ይምረጡ።"
+        f"Welcome {user_name} to **Harar Bingo Auto**!\n\n"
+        f"👤 **Account Owner Name:** ANANYA ADEFERS\n\n"
+        f"💳 **How to Deposit (Telebirr):**\n"
+        f"Send your game entry fee to one of these numbers:\n"
+        f"📱 Account 1: `0940403289`\n"
+        f"📱 Account 2: `0979152240`\n\n"
+        f"⚠️ **IMPORTANT:** You MUST put your Telegram ID `{chat_id}` in the reason/remark field when sending money!\n"
+        f"Once you sent the money, click the button below to start playing."
     )
+    
     markup = get_bingo_markup()
     bot.send_message(chat_id, welcome_text, parse_mode="Markdown", reply_markup=markup)
 
@@ -68,7 +80,14 @@ def callback_listener(call):
     elif call.data == "btn_balance":
         bot.send_message(chat_id, "💵 **Your Balance:** 0.00 ETB")
     elif call.data == "btn_deposit":
-        bot.send_message(chat_id, "💰 **Deposit Info (Telebirr):**\nSend entry fee to one of the numbers and put your Telegram ID in remark.")
+        deposit_text = (
+            f"💰 **How to Deposit (Telebirr):**\n"
+            f"Send your game entry fee to one of these numbers:\n"
+            f"📱 Account 1: `0940403289`\n"
+            f"📱 Account 2: `0979152240`\n\n"
+            f"⚠️ **IMPORTANT:** You MUST put your Telegram ID `{chat_id}` in the reason/remark field when sending money!"
+        )
+        bot.send_message(chat_id, deposit_text, parse_mode="Markdown")
     elif call.data == "btn_support":
         bot.send_message(chat_id, "☎️ **Support:** Contact @Ananya_Adefers for help.")
     elif call.data == "btn_instruction":
