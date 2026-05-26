@@ -9,7 +9,6 @@ bot.delete_webhook()
 
 WEBAPP_URL = "https://tiiny.site"
 
-
 def set_bot_commands():
     commands = [
         types.BotCommand("start", "Start Harar Bingo"),
